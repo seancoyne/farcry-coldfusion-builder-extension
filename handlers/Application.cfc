@@ -1,18 +1,17 @@
-<cfcomponent output="false"><!--- extends="cfc.update.BaseApplication" --->
+<cfcomponent extends="cfc.update.BaseApplication">
 	<cfset this.name = "FarCryCFBuilderExtension" />
-	
-	<!--- TODO: turn the updater back on --->
 	
 	<cffunction name="onApplicationStart" output="false" returntype="boolean">
 		<cfset application.oCustomFunctions = createObject("component","cfc.common.customFunctions") />
-		<!---<cfreturn super.onApplicationStart() />--->
-		<cfreturn true />
+		<cfreturn super.onApplicationStart() />
 	</cffunction>
 	
 	<cffunction name="onRequestStart" output="false" returntype="boolean">
-		<cfargument name="thePage" type="string" required="true" />
+		<cfargument name="targetPage" type="string" required="true" />
 		
-		<!--- TODO: remove this --->
+		<cfsetting showdebugoutput="false" />
+		
+		<!--- TODO: remove this (it is set in the application.cfc) --->
 		<cfset application.oCustomFunctions = createObject("component","cfc.common.customFunctions") />
 		
 		<cfif structKeyExists(url,"reload")>
@@ -21,9 +20,26 @@
 			</cflock>
 		</cfif>
 		
-		<!---<cfreturn super.onRequestStart(argumentCollection = arguments) />--->
+		<!--- load project configuration info --->
+		<cfif structKeyExists(form,"ideEventInfo")>
+			<cfif isXml(form.ideEventInfo)>
+				<cfset var ideInfo = xmlParse(form.ideEventInfo) />
+				<cfset request.projectName = ideInfo["event"]["ide"]["projectview"].xmlAttributes["projectname"] />
+				<cfset request.projectConfig = application.oCustomFunctions.loadProjectConfig(projectName = request.projectName, configPath = expandPath("../config/projects")) />
+				<cfif not structCount(request.projectConfig)>
+					<cfset structDelete(request,"projectConfig") />
+				</cfif>
+			</cfif>
+		</cfif>
+		
 		<cfreturn true />
 		
+	</cffunction>
+	
+	<cffunction name="onRequest" output="true" returntype="void">
+		<cfargument name="targetPage" required="true" type="string" />
+		<cfset super.onRequest(targetPage = arguments.targetPage) />
+		<cfinclude template="#arguments.targetPage#" />
 	</cffunction>
 	
 </cfcomponent>
