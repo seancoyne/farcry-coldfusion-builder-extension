@@ -3,21 +3,21 @@
   <author>Jeff Coughlin, Sean Coyne</author>
   <email>jeff@jeffcoughlin.com, coyne.sean@gmail.com</email> 
   <description>description.htm</description> 
-  <version>1.0.0</version>
+  <version>1.0</version>
   <license>license.htm</license>
 	
 	<menucontributions>	
     <contribution target="projectview">
       <!-- FarCry Utilities Menu -->
       <menu name="FarCry Utilities">
-		    <action name="Image Resize/Rebuild" handlerid="imageResize" showResponse="true">
-          <dialog height="600" width="800" />
-        </action>
+		  <action name="Image Resize/Rebuild" handlerid="imageResize" showResponse="true" />
+		  <action name="Configure Project" handlerid="configureProject" showResponse="true" />
       </menu>
     </contribution>
 	</menucontributions>
   <handlers>
     <handler id="imageResize" type="CFM" filename="imageResize.cfm" />
+	<handler id="configureProject" type="CFM" filename="configureProject.cfm" />
   </handlers>
 
 </application>
