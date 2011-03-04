@@ -25,7 +25,7 @@
     <cfoutput><response status="success" showresponse="true">
     <ide>
     <cfif attributes.workbench eq "dialog">
-      <dialog<cfif attributes.width neq ""> width="#attributes.width#"</cfif><cfif attributes.height neq ""> height="#attributes.height#"</cfif><cfif attributes.title neq ""> title="#attributes.title#"</cfif><cfif attributes.image neq ""> image="#attributes.image#"</cfif><cfif attributes.dialogclosehandler neq ""> dialogclosehandler="#attributes.dialogclosehandler#"</cfif>
+      <dialog<cfif attributes.width neq ""> width="#attributes.width#"</cfif><cfif attributes.height neq ""> height="#attributes.height#"</cfif><cfif attributes.title neq ""> title="#attributes.title#"</cfif><cfif attributes.image neq ""> image="#attributes.image#"</cfif><cfif attributes.dialogclosehandler neq ""> dialogclosehandler="#attributes.dialogclosehandler#"</cfif> />
       <dialog width="#attributes.width#" height="#attributes.height#" title="#attributes.title#" />
     <cfelseif attibutes.workbench eq "view">
       <view id="#attributes.id#"<cfif attributes.title neq ""> title="#attributes.title#"</cfif><cfif attributes.icon neq ""> icon="#attributes.icon#"</cfif><cfif attributes.handlerid neq ""> handlerid="#attributes.handlerid#"</cfif> />
@@ -34,9 +34,14 @@
         <![CDATA[</cfoutput>
   </cfif>
   <cfif attributes.bIncludeHeaderFooter is true>
-    <cfmodule template="#application.oCustomFunctions.getCurrentDir()#/tags/webskin/header.cfm" pageTitle="#attributes.title#" />
+    <cfmodule template="header.cfm" pageTitle="#attributes.title#" /><!--- #application.oCustomFunctions.getCurrentDir()#/tags/webskin/ --->
   </cfif>
 <cfelse>
+
+<cfif attributes.bIncludeHeaderFooter is true>
+<cfmodule template="footer.cfm" /><!--- #application.oCustomFunctions.getCurrentDir()#/tags/webskin/ --->
+</cfif>
+
   <cfif attributes.workbench neq "">
     <cfoutput>
         ]]>
@@ -44,9 +49,7 @@
     </ide>
 		</response></cfoutput>
   </cfif>
-  <cfif attributes.bIncludeHeaderFooter is true>
-    <cfmodule template="#application.oCustomFunctions.getCurrentDir()#/tags/webskin/footer.cfm" />
-  </cfif>
+  
 </cfif>
 
 <cfsetting enablecfoutputonly="false" />

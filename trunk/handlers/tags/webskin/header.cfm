@@ -1,5 +1,7 @@
 <cfsetting enablecfoutputonly="true" />
 
+<cfif thisTag.executionmode neq "start"><cfsetting enablecfoutputonly="false" /><cfexit method="exitTag" /></cfif>
+
 <cfparam name="attributes.pageTitle" default="" />
 
 <cfoutput>
