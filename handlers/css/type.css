@@ -1,0 +1,46 @@
+/*-----------------------------------------------------------
+Typography CSS file
+-----------------------------------------------------------*/
+
+/***********************************************************/
+/**                    General Elements                   **/
+/***********************************************************/
+body { font: 14px Verdana, Helvetica, Arial, sans-serif; }
+
+h1, h2, h3, h4 { line-height: 1.222; font-family: "Trebuchet MS", "Lucida Grand", Helvetica, Arial, sans-serif; }
+h1 { font-size: 200% !important; font-weight: normal; }
+h1 span { font-size: 0.6em; font-weight: normal; }
+h2 { font-size: 140% !important; }
+h3 { font-size: 120% !important; }
+h4 { font-size: 120% !important; }
+
+strong, b { font-weight: bold !important; }
+em, i { font-style: italic !important; }
+
+input, select, textarea { font: inherit; }
+
+#content-main dt { font-weight: bold; }
+#content-main ul { list-style: none; }
+#content-main li { list-height: 1.5; }
+#content-main ol li { list-style: decimal inside; }
+#content-main li ol li { list-style-type: lower-alpha; }
+#content-main li ol li ol li { list-style-type: upper-alpha; }
+#content-main thead th { font-family: "Trebuchete MS", "Lucida Grande", Helvetica, Arial, sans-serif; }
+#content-main th, #content-main td { text-align: left; }
+
+/***********************************************************/
+/**                        Footer                         **/
+/***********************************************************/
+#copyright { text-align: right; font-size: .8em; }
+
+/***********************************************************/
+/**                        Forms                          **/
+/***********************************************************/
+.generic-form input, .generic-form select, .generic-form textarea { font-size: 1em; }
+.generic-form ol { list-style: none; }
+.generic-form legend { font: bold 140%/1.222 "Trebuchet MS", "Lucida Grande", Helvetica, Arial, sans-serif; }
+.generic-form label { text-align: right; }
+.generic-form fieldset fieldset legend { font-size: 115%; }
+.generic-form .stacked-inputs legend span { text-align: right; font: 14px Verdana, Helvetica, Arial, sans-serif; }
+.generic-form .stacked-inputs label { text-align: left; vertical-align: top; }
+.generic-form .submit { font: 120% "Trebuchet MS", "Lucida Grande", Helvetica, Arial, sans-serif; }

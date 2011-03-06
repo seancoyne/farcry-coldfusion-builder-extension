@@ -1,2 +1,83 @@
-/* Reset browser CSS */
+/*
+ * Standards-Compliant Layout CSS file
+ */
+
+/***********************************************************/
+/**                  Reset HTML Elements                  **/
+/***********************************************************/
 @import url("reset-min.css");
+
+/***********************************************************/
+/**                   General Elements                    **/
+/***********************************************************/
+body { margin: 7px auto; width: 90%; padding: 1em; -moz-border-radius: 15px; border-radius: 15px; }
+
+h1,h2, h3, h4, h5, h6 { padding-top: .15em; margin: 0 10px 9px 0; }
+h1 span { clear: both; display: block; }
+
+p, pre, ul, ol, dl { margin: 0 0 1.7em; }
+p:last-child, pre:last-child, ul:last-child, ol:last-child, dl:last-child { margin: 0; }
+
+abbr, acronym { cursor: help; }
+
+#content-main blockquote, #content-main .adr { padding: 1.5em; margin: 1.7em; min-height: 2em; -moz-border-radius: 1em 2.6em 1em 2.6em; border-radius: 1em 2.6em 1em 2.6em; }
+#content-main li { margin-bottom: .2em; }
+#content-main ul li { padding-left: 12px; }
+#content-main li ul, #content-main li ol { margin-bottom: 0; }
+#content-main ol ol { margin-left: 1.5em; }
+
+#content-main table {width: 100%; border-collapse: collapse; }
+
+#content-main img { padding: 1px; }
+#content-main img.photo-right { float: right; margin: 0 0 .5em 10px; }
+#content-main img.photo-left { float: left; margin: 0 10px .5em 0; }
+#content-main img.photo-center { display: block; margin: 0 auto 1.7em; }
+
+/***********************************************************/
+/**                  Content Containers                   **/
+/***********************************************************/
+#content { padding: 0 10px 2em 10px; float: left; }
+#content-main { float: right; padding: 0 10px; }
+
+/***********************************************************/
+/**                        Footer                         **/
+/***********************************************************/
+#footer { position: relative; padding: .3em 20px; clear: both; }
+#copyright { padding-right: 20px; margin: -1em -20px 0; }
+
+/***********************************************************/
+/**                        Forms                          **/
+/***********************************************************/
+input[type="hidden"] { display: none; }
+.generic-form .required:after { content: "*"; }
+.generic-form input, .generic-form select, .generic-form textarea { padding: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.generic-form fieldset { clear: both; }
+.generic-form fieldset fieldset { margin-bottom: .7em; }
+.generic-form ol { margin-left: 0; float: none; width: 100%; }
+.generic-form li { float: left; width: 100%; margin-bottom: .5em !important; }
+.generic-form ol li { list-style-type: none !important; }
+.generic-form ul li { background: none !important; padding: 0 !important; }
+.generic-form label { width: 230px; float: left; margin-right: 10px; }
+.generic-form legend { margin: 0; padding: 0 0 .5em; }
+.generic-form input { width: 350px; }
+.generic-form textarea { width: 350px; }
+.generic-form .stacked-inputs { float: left; width: 290px; padding-left: 240px; position: relative; margin-bottom: 0; }
+.generic-form .stacked-inputs legend { position: relative; }
+.generic-form .stacked-inputs legend span { position: absolute; top: 0; left: -240px; display: block; width: 230px; padding-top: .5em; }
+.generic-form .stacked-inputs input { width: auto; }
+.generic-form .stacked-inputs ul { margin: 0; float: left; }
+.generic-form .stacked-inputs li { background-image: none; padding: 0; }
+.generic-form .stacked-inputs ul li:last-child { margin-bottom: 0 !important; }
+.generic-form .stacked-inputs label { width: auto; float: none; }
+.generic-form .submit { margin-left: 240px; padding: .25em 15px; -moz-border-radius: 7px; border-radius: 7px; }
+.generic-form .submit:hover { cursor: pointer; }
+
+/***********************************************************/
+/**                       Install                         **/
+/***********************************************************/
+.changelog { margin-bottom: 3px; }
+
+/***********************************************************/
+/**                    Error Handling                     **/
+/***********************************************************/
+div.errorMsg { clear: left; margin-bottom: 10px; }
