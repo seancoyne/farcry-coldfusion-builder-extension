@@ -13,12 +13,23 @@
   <cfset projectName = ideInfo["event"]["ide"]["projectview"].xmlAttributes["projectname"] />
   <cfset projectLocation = ideInfo["event"]["ide"]["projectview"].xmlAttributes["projectLocation"] />
 
-  <cfif structKeyExists(request,"projectConfig")>
+  <cfif structKeyExists(form, "installationType")>
+    <!--- The form was submitted, but likely failed validation. So pre-fill previous answers --->
+
+    <cfset configData = { 
+      pathToFarCry = form["pathToFarCry"], 
+      installationType = form["installationType"], 
+      farCryVersionShort = form["farCryVersionShort"], 
+      farCryVersionFull = form["farCryVersionFull"], 
+      farCryProjectDirectoryName = form["farCryProjectDirectoryName"]
+    } />
+
+  <cfelseif structKeyExists(request,"projectConfig")>
     
     <cfset configData = request.projectConfig />
     
-    <cfset configData.pathToFarCry = configData.paths.farcry />
-    <cfset configData.farCryVersionShort = configData.farCryVersion />
+    <cfset configData.pathToFarCry = configData.path.farcry />
+    <cfset configData.farCryVersionShort = configData.farCryVersionShort />
     <cfset configData.farCryVersionFull = "" />
     
   <cfelse>
@@ -28,7 +39,7 @@
       installationType = "", 
       farCryVersionShort = "", 
       farCryVersionFull = "", 
-      farCryProjectDirectoryName = "" 
+      farCryProjectDirectoryName = ""
     } />
     
     
@@ -166,12 +177,12 @@
         <fieldset id="farcryversion-info">
           <ol>
             <li>
-              <label for="farCryVersion" class="required">FarCry Version</label>
-              <select name="farCryVersion" id="farCryVersion">
-                <option value="6.0.x" <cfif configData.farCryVersionShort eq "6.0.x">selected="selected"</cfif>>6.0.x</option>
-                <option value="6.1.x" <cfif configData.farCryVersionShort eq "6.1.x">selected="selected"</cfif>>6.1.x</option>
+              <label for="farCryVersionShort" class="required">FarCry Version</label>
+              <select name="farCryVersionShort" id="farCryVersionShort">
+                <option value="6.0.x"<cfif configData.farCryVersionShort eq "6.0.x"> selected="selected"</cfif>>6.0.x</option>
+                <option value="6.1.x"<cfif configData.farCryVersionShort eq "6.1.x"> selected="selected"</cfif>>6.1.x</option>
               </select>
-              #checkFormError("farCryVersion")#
+              #checkFormError("farCryVersionShort")#
             </li>
           </ol>
         </fieldset>
@@ -179,12 +190,12 @@
       <p>
         <input type="hidden" name="ideEventInfo" value="#htmlEditFormat(form.ideEventInfo)#" />
         <input type="hidden" name="projectName" value="#projectName#" />
+        <input type="hidden" name="farCryVersionFull" value="#configData.farCryVersionFull#" />
         <input type="hidden" name="cmd" value="actionPage" />
         <button type="submit" class="submit" id="submit-farcry-info">Submit</button>
       </p>
     </form> 
 
   </cfoutput>
-
 
 <cfsetting enablecfoutputonly="false" />
