@@ -72,5 +72,17 @@
 		</cfif>
 		<cfreturn {} />
 	</cffunction>
-	
+
+	<cffunction name="checkFormError" output="false" returntype="string">
+	  <cfargument name="key" type="string" required="true" hint="Struct key matching the error name to check for" />
+	  
+	  <cfset var returnStr = "" />
+	  
+	  <cfif structKeyExists(variables.stErrors, "#arguments.key#")>
+	    <cfset returnStr = '<br /><div class="errorMsg">#variables.stErrors["#arguments.key#"]#</div>' />
+	  </cfif>
+	  
+	  <cfreturn returnStr />
+	</cffunction>
+
 </cfcomponent>

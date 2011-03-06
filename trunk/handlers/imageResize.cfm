@@ -1,5 +1,15 @@
 <cfsetting enablecfoutputonly="true" showdebugoutput="false" />
 
+<cfimport taglib="tags/webskin" prefix="skin" />
+
+<cfset handlerName = "imageResize" />
+
+<cfif structKeyExists(variables, "command") is true or structKeyExists(form, "cmd") is true or structKeyExists(url, "cmd") is true>
+  <cfset variables.workbench = "" />
+<cfelse>
+  <cfset variables.workbench = "dialog" />
+</cfif>
+
 <!--- list of all valid url commands for the page --->
 <cfset lCommands = "formPage,actionPage,completePage" />
 
@@ -11,6 +21,8 @@
 <cfelseif structKeyExists(url,'cmd') AND listFindNoCase(lCommands,url.cmd)>
   <cfset command = url.cmd />
 </cfif>
+
+<skin:contentWrapperMain workbench="#workbench#" title="Configure Project" width="800" height="650">
 
 <!--- Loop until we are done --->
 <cfloop condition="true">
@@ -24,13 +36,13 @@
 
   <cfswitch expression="#variables.command#">
     <cfcase value="formPage">
-      <cfinclude template="includes/imageResize/imageResizeForm.cfm">
+      <cfinclude template="includes/#handlerName#/#handlerName#Form.cfm">
     </cfcase>
     <cfcase value="actionPage">
-      <cfinclude template="includes/imageResize/imageResizeFormAction.cfm">
+      <cfinclude template="includes/#handlerName#/#handlerName#FormAction.cfm">
     </cfcase>
     <cfcase value="completePage">
-      <cfinclude template="includes/imageResize/imageResizeFormComplete.cfm">
+      <cfinclude template="includes/#handlerName#/#handlerName#FormComplete.cfm">
     </cfcase>
     <cfdefaultcase>
       <cfoutput><p>Invalid command (#variables.command#) encountered.</p></cfoutput>
@@ -42,5 +54,7 @@
     <cfbreak />
   </cfif>
 </cfloop>
+
+</skin:contentWrapperMain>
 
 <cfsetting enablecfoutputonly="false" />

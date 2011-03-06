@@ -1,0 +1,48 @@
+/*
+Color CSS file
+
+Color Reference
+Body text:          #444444
+Dark green:         #00817b
+---
+unkown:             #122b61
+unkown:             #41a7e5
+unkown:             #79b6ce
+unkown:             #0b3e2d
+unkown:             #427236
+unkown:             #79ce83
+HTML page baground: #add978
+ */
+
+/***********************************************************/
+/**                   General Elements                    **/
+/***********************************************************/
+html { background: #add978 !important; }
+body { background: #fff; color: #444; }
+
+h1, h2, h3, h4 { color: #122b61; }
+
+#content-main blockquote, #content-main .adr { background: #79ce83; color: #0B3E2D; }
+#content-main ul li { background: transparent url(images/bullet.png) 0 .45em no-repeat; }
+/*#content-main ul ul li { background: transparent url(images/bullet-sub.png); }*/
+
+#content-main img { border: 1px solid #0b3e2d; }
+
+/***********************************************************/
+/**                        Footer                         **/
+/***********************************************************/
+#copyright { border-top: 1px solid #79ce83; color: #6a6a6a; }
+
+/***********************************************************/
+/**                        Forms                          **/
+/***********************************************************/
+.generic-form input, .generic-form select, .generic-form textarea { color: #444444; border-width: 1px; border-style: solid; border-color: #ccc; }
+.generic-form legend { color: #122b61; }
+.generic-form .stacked-inputs legend span { color: #444; }
+.generic-form .submit { border: 1px solid #999999; background: #00817b url(images/form-button.png) repeat-x; color: #fff; }
+.generic-form .submit:hover { border-color: #333333; background: #00817b url(images/form-button-hover.png) repeat-x; color: #333; }
+
+/***********************************************************/
+/**                    Error Handling                     **/
+/***********************************************************/
+.errorMsg { font-weight: bold; color: #f00; }
