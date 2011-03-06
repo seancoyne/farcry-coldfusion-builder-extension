@@ -26,20 +26,21 @@
   if (form.pathToFarCry eq ''){
     variables.stErrors.pathToFarCry = "Path to FarCry folder is required.";
   }
-  if (form.farCryVersion eq ''){
-    variables.stErrors.farCryVersion = "FarCry version is required.";
+  if (form.farCryVersionShort eq ''){
+    variables.stErrors.farCryVersionShort = "FarCry version is required.";
   }
   if (form.projectName eq ''){
     variables.stErrors.projectName = "Unknown Eclipse project name: Sorry, but we cannot detect your Eclipse project name and thus can't continue.";
   }
 </cfscript>
   
-  <cfset configData["paths"] = {} />
-  <cfset configData["paths"]["FarCry"] = form.pathToFarCry />
-  <cfset configData["paths"]["Core"] = form.pathToFarCry & "/core" />
-  <cfset configData["paths"]["Plugins"] = form.pathToFarCry & "/plugins" />
-  <cfset configData["paths"]["Projects"] = form.pathToFarCry & "/projects" />
-  <cfset configData["farCryVersion"] = form.farCryVersion />
+  <cfset configData["path"] = {} />
+  <cfset configData["path"]["FarCry"] = form.pathToFarCry />
+  <cfset configData["path"]["Core"] = form.pathToFarCry & "/core" />
+  <cfset configData["path"]["Plugins"] = form.pathToFarCry & "/plugins" />
+  <cfset configData["path"]["Projects"] = form.pathToFarCry & "/projects" />
+  <cfset configData["farCryVersionShort"] = form.farCryVersionShort />
+  <cfset configData["farCryVersionFull"] = form.farCryVersionFull />
   <cfset configData["installationType"] = form.installationType />
   <!--- TODO: Was this a mistake? Shouldn't we need the FC project folder name fall all 3 install types? --->
   <cfif form.installationType eq "subdirectory">
