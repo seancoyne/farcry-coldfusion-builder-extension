@@ -103,8 +103,16 @@
       </cfif>
       
     </cfif>
-  
-  </cfif> 
+
+    <!--- TODO: Make sure this code only runs if json file doesn't exist (the first time the config is being run on this project --->
+    <cfif configData.farCryProjectDirectoryName eq "">
+      <cfset variables.stErrors.autoDetect_farCryProjectDirectoryName = 'Could not auto-detect FarCry project folder. Please verify that this is a FarCry-based Eclipse project and that your FarCry project files are in the root of the Eclipse project' />
+    </cfif>
+    <cfif configData.pathToFarCry eq "">
+      <cfset variables.stErrors.autoDetect_PathToFarCry = 'Could not auto-detect FarCry root folder (the folder that contains the "core" framework folder). Please verify that this is a FarCry-based Eclipse project and that your FarCry project files are in the root of the Eclipse project' />
+    </cfif>
+    
+  </cfif>
 
   <cfoutput>
     
