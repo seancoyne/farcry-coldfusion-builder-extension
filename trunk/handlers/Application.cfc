@@ -20,6 +20,12 @@
 			</cflock>
 		</cfif>
 		
+		<!--- fix to prevent ajax requests from being broken by onRequest (required for the updater) --->
+		<cfif listLast(arguments.targetPage,".") eq "cfc">
+			<cfset structDelete(this,"onRequest") />
+			<cfset structDelete(variables,"onRequest") />
+		</cfif>
+		
 		<!--- load project configuration info --->
 		<cfif structKeyExists(form,"ideEventInfo")>
 			<cfif isXml(form.ideEventInfo)>
