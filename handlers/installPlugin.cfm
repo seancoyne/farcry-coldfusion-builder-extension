@@ -100,7 +100,7 @@
 <response <cfif len(status)>status="#status#"</cfif> showresponse="true"> 
 	<ide <cfif len(message)>message="#message#"</cfif> handlerfile="installPlugin.cfm"> 
 		<dialog width="600" height="400" title="Install Plugin"> 
-			<input name="pluginName" label="Plugin name" type="string" required="true" errormesssage="You must provide a plugin name" helpmessage="The name of the plugin.  This will be used as the folder name (ex. farcrycms)" />
+			<input name="pluginName" label="Plugin folder name" type="string" required="true" errormesssage="You must provide a plugin name" helpmessage="The name of the plugin.  This will be used as the folder name (ex. farcrycms)" />
 			<input name="pathToPluginSource" label="Plugin Source (zip or manifest.cfc):" required="true" type="file" pattern="^.+((\.zip)|(manifest\.cfc))" errormessage="Must be a zip or manifest.cfc file!" />
 			<!--- TODO: add field to indicate that existing files should be deleted --->
 			<input name="bCopyFilesToWebroot" label="Copy www files to webroot?" required="true" errormessage="Please indicate if you would like to copy the www files to the webroot" type="list" helpmessage="Selecting yes will copy the www files to the project webroot.  If you select no, you may need to create a webserver alias to the plugin's www folder.">
