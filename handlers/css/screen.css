@@ -53,6 +53,7 @@ input[type="hidden"] { display: none; }
 .generic-form input, .generic-form select, .generic-form textarea { padding: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 .generic-form fieldset { clear: both; }
 .generic-form fieldset fieldset { margin-bottom: .7em; }
+.generic-form fieldset div.errorMsg { margin-left: 240px; }
 .generic-form ol { margin-left: 0; float: none; width: 100%; }
 .generic-form li { float: left; width: 100%; margin-bottom: .5em !important; }
 .generic-form ol li { list-style-type: none !important; }
