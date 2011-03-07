@@ -1,6 +1,6 @@
 <cfcomponent output="false">
 	
-	<!--- getCurrentDir taken from varScoper Extension by Raymond Camded --->
+	<!--- getCurrentDir taken from varScoper Extension by Raymond Camden --->
 	<cffunction name="getCurrentURL" output="No" access="public" returnType="string">
 	    <cfset var theURL = getPageContext().getRequest().GetRequestUrl().toString()>
 	    <cfif len( CGI.query_string )><cfset theURL = theURL & "?" & CGI.query_string></cfif>
@@ -10,7 +10,7 @@
 	    <cfreturn theURL>
 	</cffunction>
 	
-	<!--- getCurrentDir taken from varScoper Extension by Raymond Camded --->
+	<!--- getCurrentDir taken from varScoper Extension by Raymond Camden --->
 	<cffunction name="getCurrentDir" output="No" access="public" returnType="string">
 	    <cfset var theURL = getCurrentURL()>
 		<cfset theURL = listDeleteAt(theURL, listLen(theURL, "/"), "/")>
