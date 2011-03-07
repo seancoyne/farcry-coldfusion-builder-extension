@@ -44,8 +44,6 @@
       farCryProjectDirectoryName = ""
     } />
     
-    
-    
     <cfif directoryExists(eclipseProjectLocation & "/farcry")>
       
       <!--- Try to detect FarCry core location --->
@@ -106,7 +104,7 @@
 
     <!--- TODO: Make sure this code only runs if json file doesn't exist (the first time the config is being run on this project --->
     <cfif configData.pathToFarCry eq "">
-      <cfset variables.stErrors.autoDetect_PathToFarCry = 'Could not auto-detect FarCry root folder (the folder that contains the "core" framework folder). Please verify that this is a FarCry-based Eclipse project and that your FarCry project files are in the root of the Eclipse project' />
+      <cfset variables.stErrors.autoDetect_PathToFarCry = 'Could not auto-detect FarCry root folder (the folder that contains the "core" framework folder). Please verify that this is a FarCry-based Eclipse project and that your FarCry project files are in the root of the Eclipse project.' />
     </cfif>
     
   </cfif>
@@ -135,11 +133,11 @@
     <blockquote style="<cfif bDisplayNotifications is false>display: none;</cfif>">
       <cfif structCount(variables.stErrors) gt 0>
         <h2>Please review any error messages below</h2>
-        <ol>
+        <ul>
           <cfloop collection="#variables.stErrors#" item="errorMsg">
             <li>#variables.stErrors[errorMsg]#</li>
           </cfloop>
-        </ol>
+        </ul>
       </cfif>
     </blockquote>
 

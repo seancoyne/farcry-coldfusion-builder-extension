@@ -23,7 +23,7 @@ body { background: #fff; color: #444; }
 h1, h2, h3, h4 { color: #122b61; }
 
 #content-main blockquote, #content-main .adr { background: #79ce83; color: #0B3E2D; }
-#content-main ul li { background: transparent url(images/bullet.png) 0 .45em no-repeat; }
+#content-main ul li { background: transparent url(images/bullet.png) 0 .4em no-repeat; }
 /*#content-main ul ul li { background: transparent url(images/bullet-sub.png); }*/
 
 #content-main img { border: 1px solid #0b3e2d; }
