@@ -5,7 +5,7 @@
   <cfparam name="form.pathToFarCry" default="" type="string" />
   <cfparam name="form.farCryVersion" default="" type="string" />
   <cfparam name="form.installationType" default="" type="string" />
-  <cfparam name="form.projectName" default="" type="string" />
+  <cfparam name="form.eclipseProjectName" default="" type="string" />
   <cfparam name="form.farCryProjectDirectoryName" default="" type="string" />
   
 <cfscript>
@@ -29,8 +29,8 @@
   if (form.farCryVersionShort eq ''){
     variables.stErrors.farCryVersionShort = "FarCry version is required.";
   }
-  if (form.projectName eq ''){
-    variables.stErrors.projectName = "Unknown Eclipse project name: Sorry, but we cannot detect your Eclipse project name and thus can't continue.";
+  if (form.eclipseProjectName eq ''){
+    variables.stErrors.eclipseProjectName = "Unknown Eclipse project name: Sorry, but we cannot detect your Eclipse project name and thus can't continue.";
   }
 </cfscript>
   
@@ -55,7 +55,7 @@
   
   <cftry>
   <!--- clean up the project name so it is safe to save as a file name --->
-  <cfset fileName = application.oCustomFunctions.cleanFileName(form.projectname) />
+  <cfset fileName = application.oCustomFunctions.cleanFileName(form.eclipseProjectName) />
   <cffile action="write" file="#configPath#/#fileName#.json" output="#trim(jsonData)#" addnewline="false" />
     <cfcatch>
       <cfset variables.stErrors.message = "Configuration file write error. The extension cannot work without the ability to write to the config file. Please check that Coldfusion has write access to the extension folders." />
