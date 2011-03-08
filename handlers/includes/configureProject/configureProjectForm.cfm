@@ -112,8 +112,29 @@
   <cfoutput>
     
     <script type="text/javascript">
+      function onChangeInstallationType(itemVal,bUserClick){
+        if(itemVal == 'advanced'){
+          $('##li_farCryProjectDirectoryName').slideDown('fast');
+        } else {
+          if (bUserClick == 0) {
+            $('##li_farCryProjectDirectoryName').hide();
+          } else {
+            $('##li_farCryProjectDirectoryName').slideUp('fast');
+          }
+        }
+      }
+
       $(document).ready(function(){
-        
+
+        // Handle installation type switching
+        <cfif configData.installationType neq "">
+          <!--- If editing a record, display selected info --->
+          onChangeInstallationType('#configData.installationType#',0);
+        </cfif>
+        $('##installation-type input:radio').change(function(){
+          onChangeInstallationType( $(this).val() );
+        });
+
         // Tooltips for all desired form elements
         $(".generic-form :input").tooltip({
           position: "center right",
@@ -171,7 +192,7 @@
         </fieldset>
         <fieldset id="projectname-info">
           <ol>
-            <li><label for="farCryProjectDirectoryName" class="required">FarCry Project Directory Name</label> <input type="text" id="farCryProjectDirectoryName" name="farCryProjectDirectoryName" value="#configData.farCryProjectDirectoryName#" title="Required for advanced installation type" />#checkFormError("farCryProjectDirectoryName")#</li>
+            <li id="li_farCryProjectDirectoryName"><label for="farCryProjectDirectoryName" class="required">FarCry Project Directory Name</label> <input type="text" id="farCryProjectDirectoryName" name="farCryProjectDirectoryName" value="#configData.farCryProjectDirectoryName#" title="Required for advanced installation type" />#checkFormError("farCryProjectDirectoryName")#</li>
             <li><label for="pathToFarCry" class="required">Path to FarCry Folder</label> <input type="text" id="pathToFarCry" name="pathToFarCry" value="#configData.pathToFarCry#" title="The folder that contains the core, plugins, and projects folders" />#checkFormError("pathToFarCry")#</li>
           </ol>
         </fieldset>

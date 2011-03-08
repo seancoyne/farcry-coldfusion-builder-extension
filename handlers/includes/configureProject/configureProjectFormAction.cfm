@@ -20,7 +20,7 @@
   if (form.installationType eq ''){
     variables.stErrors.installationType = "Installation type required.";
   }
-  if (form.farCryProjectDirectoryName eq ''){
+  if (form.farCryProjectDirectoryName eq '' and form.installationType eq 'advanced'){
     variables.stErrors.farCryProjectDirectoryName = "FarCry project directory name is required.";
   }
   if (form.pathToFarCry eq ''){
@@ -42,8 +42,7 @@
   <cfset configData["farCryVersionShort"] = form.farCryVersionShort />
   <cfset configData["farCryVersionFull"] = form.farCryVersionFull />
   <cfset configData["installationType"] = form.installationType />
-  <!--- TODO: Was this a mistake? Shouldn't we need the FC project folder name fall all 3 install types? --->
-  <cfif form.installationType eq "subdirectory">
+  <cfif listFindNoCase("subdirectory,standalone", form.installationType) neq "">
     <cfset configData["farCryProjectDirectoryName"] = "" />
   <cfelse>
     <cfset configData["farCryProjectDirectoryName"] = form.farCryProjectDirectoryName />
