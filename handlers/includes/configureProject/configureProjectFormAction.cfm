@@ -20,7 +20,7 @@
   if (form.installationType eq ''){
     variables.stErrors.installationType = "Installation type required.";
   }
-  if (form.farCryProjectDirectoryName eq '' and form.installationType eq 'advanced'){
+  if (form.farCryProjectDirectoryName eq '' and listFindNoCase("advanced,standalone", form.installationType) gt 0){
     variables.stErrors.farCryProjectDirectoryName = "FarCry project directory name is required.";
   }
   if (form.pathToFarCry eq ''){
@@ -42,7 +42,7 @@
   <cfset configData["farCryVersionShort"] = form.farCryVersionShort />
   <cfset configData["farCryVersionFull"] = form.farCryVersionFull />
   <cfset configData["installationType"] = form.installationType />
-  <cfif listFindNoCase("subdirectory,standalone", form.installationType) neq "">
+  <cfif form.installationType eq "subdirectory">
     <cfset configData["farCryProjectDirectoryName"] = "" />
   <cfelse>
     <cfset configData["farCryProjectDirectoryName"] = form.farCryProjectDirectoryName />
