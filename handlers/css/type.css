@@ -44,3 +44,8 @@ input, select, textarea { font: inherit; }
 .generic-form .stacked-inputs legend span { text-align: right; font: 14px Verdana, Helvetica, Arial, sans-serif; }
 .generic-form .stacked-inputs label { text-align: left; vertical-align: top; }
 .generic-form .submit { font: 120% "Trebuchet MS", "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+/***********************************************************/
+/**                       Tooltips                        **/
+/***********************************************************/
+.tooltip { text-align: left; font-size: 12px; }
