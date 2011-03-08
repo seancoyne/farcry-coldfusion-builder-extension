@@ -34,6 +34,7 @@
   }
 </cfscript>
   
+<cfif structCount(variables.stErrors) eq 0>
   <cfset configData["path"] = {} />
   <cfset configData["path"]["FarCry"] = form.pathToFarCry />
   <cfset configData["path"]["Core"] = form.pathToFarCry & "/core" />
@@ -60,7 +61,8 @@
       <cfset variables.stErrors.message = "Configuration file write error. The extension cannot work without the ability to write to the config file. Please check that Coldfusion has write access to the extension folders." />
     </cfcatch>    
   </cftry>
-  
+</cfif>
+
 <cfif structCount(variables.stErrors) gt 0>
   <cfset variables.command = "formPage" />
 <cfelse>
