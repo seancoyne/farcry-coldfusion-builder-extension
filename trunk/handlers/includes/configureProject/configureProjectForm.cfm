@@ -113,7 +113,7 @@
     
     <script type="text/javascript">
       function onChangeInstallationType(itemVal,bUserClick){
-        if(itemVal == 'advanced'){
+        if(itemVal == 'advanced' || itemVal == 'standalone'){
           $('##li_farCryProjectDirectoryName').slideDown('fast');
         } else {
           if (bUserClick == 0) {
@@ -180,9 +180,9 @@
               <fieldset id="installation-type" title="Hello">
                 <legend><span class="required">Installation Type</span></legend>
                 <ul>
+                  <li><label for="installationType_subdirectory"><input type="radio" name="installationType" id="installationType_subdirectory" value="subdirectory"<cfif configData.installationType eq "subdirectory"> checked="checked"</cfif> /> Sub-Directory</label></li>
                   <li><label for="installationType_standalone"><input type="radio" name="installationType" id="installationType_standalone" value="standalone"<cfif configData.installationType eq "standalone"> checked="checked"</cfif> /> Standalone</label></li>
-                  <li><label for="installationType_subdirectory"><input type="radio" name="installationType" id="installationType_subdirectory" value="subdirectory"<cfif configData.installationType eq "subdirectory"> checked="checked"</cfif> /> Subdirectory</label></li>
-                  <li><label for="installationType_advanced"><input type="radio" name="installationType" id="installationType_advanced" value="advanced"<cfif configData.installationType eq "advanced"> checked="checked"</cfif> /> Advanced</label>
+                  <li><label for="installationType_advanced"><input type="radio" name="installationType" id="installationType_advanced" value="advanced"<cfif configData.installationType eq "advanced"> checked="checked"</cfif> /> Advanced Configuration</label>
                     #checkFormError("installationType")#
                   </li>
                 </ul>
