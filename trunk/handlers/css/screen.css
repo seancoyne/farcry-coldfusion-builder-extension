@@ -60,8 +60,8 @@ input[type="hidden"] { display: none; }
 .generic-form ul li { background: none !important; padding: 0 !important; }
 .generic-form label { width: 230px; float: left; margin-right: 10px; }
 .generic-form legend { margin: 0; padding: 0 0 .5em; }
-.generic-form input { width: 350px; }
-.generic-form textarea { width: 350px; }
+.generic-form input { width: 250px; }
+.generic-form textarea { width: 250px; }
 .generic-form .stacked-inputs { float: left; width: 290px; padding-left: 240px; position: relative; margin-bottom: 0; }
 .generic-form .stacked-inputs legend { position: relative; }
 .generic-form .stacked-inputs legend span { position: absolute; top: 0; left: -240px; display: block; width: 230px; padding-top: .5em; }
@@ -72,6 +72,11 @@ input[type="hidden"] { display: none; }
 .generic-form .stacked-inputs label { width: auto; float: none; }
 .generic-form .submit { margin-left: 240px; padding: .25em 15px; -moz-border-radius: 7px; border-radius: 7px; }
 .generic-form .submit:hover { cursor: pointer; }
+
+/***********************************************************/
+/**                       Tooltips                        **/
+/***********************************************************/
+.tooltip { display: none; width: 150px; padding: 10px 15px; }
 
 /***********************************************************/
 /**                       Install                         **/

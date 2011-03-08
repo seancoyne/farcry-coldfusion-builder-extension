@@ -43,6 +43,11 @@ h1, h2, h3, h4 { color: #122b61; }
 .generic-form .submit:hover { border-color: #333333; background: #00817b url(images/form-button-hover.png) repeat-x; color: #333; }
 
 /***********************************************************/
+/**                       Tooltips                        **/
+/***********************************************************/
+.tooltip { color: #fff; background-color: #000; border: 1px solid #fff; -moz-box-shadow: 0 0 10px #000; -webkit-box-shadow: 0 0 10px #000; box-shadow: 0 0 10px #000; }
+
+/***********************************************************/
 /**                    Error Handling                     **/
 /***********************************************************/
 .errorMsg { font-weight: bold; color: #f00; }

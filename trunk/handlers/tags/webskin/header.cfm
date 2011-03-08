@@ -15,6 +15,7 @@
   <link rel="stylesheet" type="text/css" media="all" href="#application.oCustomFunctions.getCurrentDir()#/css/jquery-ui-redmond/jquery-ui-1.8.10.custom.css" />
   <script type="text/javascript" src="#application.oCustomFunctions.getCurrentDir()#/js/jquery-1.5.1.min.js"></script>
   <script type="text/javascript" src="#application.oCustomFunctions.getCurrentDir()#/js/jquery-ui-1.9.10.custom.min.js"></script>
+  <script type="text/javascript" src="#application.oCustomFunctions.getCurrentDir()#/js/jquery.tools.min.js"></script>
 </head>
 <body class="landing">
   <div id="content">
