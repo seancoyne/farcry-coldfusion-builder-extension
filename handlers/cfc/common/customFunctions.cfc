@@ -1,6 +1,6 @@
 <cfcomponent output="false">
 	
-	<!--- getCurrentDir taken from varScoper Extension by Raymond Camden --->
+	<!--- getCurrentURL taken from varScoper Extension by Raymond Camden --->
 	<cffunction name="getCurrentURL" output="No" access="public" returnType="string">
 	    <cfset var theURL = getPageContext().getRequest().GetRequestUrl().toString()>
 	    <cfif len( CGI.query_string )><cfset theURL = theURL & "?" & CGI.query_string></cfif>
@@ -41,12 +41,12 @@
 	<cffunction name="parseFarCryProjectDirectoryName" output="false" access="public" returntype="string">
 		<cfargument name="farCryConstructorContent" required="true" type="string" />
 		<!--- first try this.projectdirectoryname --->
-		<cfset var stMatches = reFindNoCase('this.projectDirectoryName[[:space:]]{1,}=[[:space:]]{1,}\"([^\"]*)\"',arguments.farCryConstructorContent,0,true) />
+		<cfset var stMatches = reFindNoCase('this.projectDirectoryName[[:space:]]{0,}=[[:space:]]{0,}\"([^\"]*)\"',arguments.farCryConstructorContent,0,true) />
 		<cfif arraylen(stMatches.len) eq 2>
 			<cfreturn mid(arguments.farCryConstructorContent, stMatches.pos[2], stMatches.len[2]) />
 		<cfelse>
 			<!--- no this.projectdirectoryname, so try to find this.name --->
-			<cfset stMatches = reFindNoCase('this.name[[:space:]]{1,}=[[:space:]]{1,}\"([^\"]*)\"',arguments.farCryConstructorContent,0,true) />
+			<cfset stMatches = reFindNoCase('this.name[[:space:]]{0,}=[[:space:]]{0,}\"([^\"]*)\"',arguments.farCryConstructorContent,0,true) />
 			<cfif arraylen(stMatches.len) eq 2>
 				<cfreturn mid(arguments.farCryConstructorContent, stMatches.pos[2], stMatches.len[2]) />
 			</cfif>
@@ -84,5 +84,31 @@
 	  
 	  <cfreturn returnStr />
 	</cffunction>
-
+	
+	<cffunction name="getInputValue" output="false" returntype="string" access="public">
+		<cfargument name="xml" type="xml" required="true" />
+		<cfargument name="name" type="string" required="true" />
+		<cfargument name="default" type="string" required="false" default="" />
+		<cfset var searchResult = xmlSearch(arguments.xml, "/event/user/input[@name='#arguments.name#']") />
+		<cfif arrayLen(searchResult)>
+			<cfreturn searchResult[1].xmlAttributes.value />
+		</cfif> 
+		<cfreturn arguments.default />
+	</cffunction>
+	
+	<cffunction name="addPluginToList" output="false" returntype="string" access="public">
+		<cfargument name="farCryConstructorContent" required="true" type="string" />
+		<cfargument name="pluginName" required="true" type="string" />
+		<cfset var regEx = 'this.plugins[[:space:]]{0,}=[[:space:]]{0,}\"([^\"]*)\"' />
+		<cfset var stMatches = reFindNoCase(regEx,arguments.farCryConstructorContent,0,true) />
+		<cfif arrayLen(stMatches.len) eq 2>
+			<cfset var pluginList = mid(arguments.farCryConstructorContent, stMatches.pos[2], stMatches.len[2]) />
+			<cfif not listFindNoCase(pluginList,arguments.pluginName)>
+				<cfset pluginList = listAppend(pluginList,arguments.pluginName) />
+			</cfif>
+			<cfreturn reReplaceNoCase(arguments.farCryConstructorContent,regEx,'this.plugins = "' & pluginList & '"') />
+		</cfif>
+		<cfreturn arguments.farCryConstructorContent />
+	</cffunction> 
+	
 </cfcomponent>
