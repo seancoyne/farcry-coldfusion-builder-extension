@@ -1,10 +1,9 @@
 <cfsetting enablecfoutputonly="true" showdebugoutput="false" />
 
-<!--- NOTE: We assume structKeyExists for form.ideEventInfo --->
+  <!--- NOTE: We assume structKeyExists for form.ideEventInfo --->
 
-  <!--- TODO: How to handle new config options? (meaning: A json file exists, but it's in an older format and at least one thing in it needs to be added or changed --->
-  <!--- TODO: check for json file first --->
-  
+  <!--- TODO: How to handle new config options? (meaning: A json file exists, but it's in an older format and at least one thing in it needs to be added or changed --->  
+
   <cfparam name="variables.stErrors" default="#{}#" />
   <cfset checkFormError = application.oCustomFunctions.checkFormError />
   <cfset bDisplayNotifications = false />
@@ -26,15 +25,16 @@
     } />
 
   <cfelseif structKeyExists(request,"projectConfig")>
-    
+    <!--- Check existing config file --->
     <cfset configData = request.projectConfig />
     
     <cfset configData.pathToFarCry = configData.path.farcry />
-    <cfset configData.farCryVersionShort = configData.farCryVersionShort />
-    <cfset configData.farCryVersionFull = "" />
-    
+    <cfset configData.farCryVersionFull = configData.farCryVersion />
+    <cfif listLen(configData.farCryVersionFull, ".") eq 3>
+      <cfset configData.farCryVersionShort = listSetAt(configData.farCryVersionFull, 3, "x", ".") />
+    </cfif>
   <cfelse>
-    <!--- This section of code should only be run when a json config doesn't exist (first-time run for a project) --->
+    <!--- This section of code should only be run when a json config doesn't exist (first-time run for a project or the config file was deleted for some reason) --->
 
     <cfset configData = { 
       pathToFarCry = "", 
@@ -102,7 +102,6 @@
       
     </cfif>
 
-    <!--- TODO: Make sure this code only runs if json file doesn't exist (the first time the config is being run on this project --->
     <cfif configData.pathToFarCry eq "">
       <cfset variables.stErrors.autoDetect_PathToFarCry = 'Could not auto-detect FarCry root folder (the folder that contains the "core" framework folder). Please verify that this is a FarCry-based Eclipse project and that your FarCry project files are in the root of the Eclipse project.' />
     </cfif>
@@ -177,7 +176,7 @@
         <fieldset class="stacked-inputs">
           <ol>
             <li>
-              <fieldset id="installation-type" title="Hello">
+              <fieldset id="installation-type">
                 <legend><span class="required">Installation Type</span></legend>
                 <ul>
                   <li><label for="installationType_subdirectory"><input type="radio" name="installationType" id="installationType_subdirectory" value="subdirectory"<cfif configData.installationType eq "subdirectory"> checked="checked"</cfif> /> Sub-Directory</label></li>
