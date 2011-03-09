@@ -38,6 +38,9 @@
 			</cfif>
 		</cfif>
 		
+		<!--- load extension config --->
+		<cfset request.extensionConfig = application.oCustomFunctions.loadExtensionConfig() />
+		
 		<cfreturn true />
 		
 	</cffunction>
