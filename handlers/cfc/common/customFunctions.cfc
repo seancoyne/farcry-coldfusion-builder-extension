@@ -1,13 +1,13 @@
-<cfcomponent output="false">
+<cfcomponent output="true">
 	
 	<!--- getCurrentURL taken from varScoper Extension by Raymond Camden --->
-	<cffunction name="getCurrentURL" output="No" access="public" returnType="string">
-	    <cfset var theURL = getPageContext().getRequest().GetRequestUrl().toString()>
-	    <cfif len( CGI.query_string )><cfset theURL = theURL & "?" & CGI.query_string></cfif>
-	    <!--- Hack by Raymond, remove any CFID CFTOKEN --->
-		<cfset theUrl = reReplaceNoCase(theUrl, "[&?]*cfid=[0-9]+", "")>
-		<cfset theUrl = reReplaceNoCase(theUrl, "[&?]*cftoken=[^&]+", "")>
-	    <cfreturn theURL>
+	<cffunction name="getCurrentURL" output="false" access="public" returnType="string">
+    <cfset var theURL = getPageContext().getRequest().GetRequestUrl().toString() />
+    <cfif len( CGI.query_string )><cfset theURL = theURL & "?" & CGI.query_string /></cfif>
+    <!--- Hack by Raymond, remove any CFID CFTOKEN --->
+    <cfset theUrl = reReplaceNoCase(theUrl, "[&?]*cfid=[0-9]+", "") />
+    <cfset theUrl = reReplaceNoCase(theUrl, "[&?]*cftoken=[^&]+", "") />
+    <cfreturn theURL />
 	</cffunction>
 	
 	<!--- getCurrentDir taken from varScoper Extension by Raymond Camden --->
@@ -61,6 +61,25 @@
 		
 	</cffunction>
 	
+  <cffunction name="loadExtensionConfig" output="false" access="public" returntype="struct">
+    <cfset var stReturn = {} />
+    <cfset var currentDir = replace(getCurrentDir(), "\", "/", "all") /><!--- Clean paths for Windows users --->
+    <cfset var xmlFile = trim(listDeleteAt(currentDir, listLen(currentDir, "/"), "/") & "/ide_config.xml") />
+
+    <cfif fileExists(xmlFile)>
+      <cfset var extensionConfigXml = fileRead(xmlFile) />
+      <cfif isXml(extensionConfigXml)>
+        <cfset stReturn.oXml = xmlParse(extensionConfigXml) />
+        <cfset stReturn.name = stReturn.oXml["application"]["name"]["xmlText"] />
+        <cfset stReturn.author = stReturn.oXml["application"]["author"]["xmlText"] />
+        <cfset stReturn.email = stReturn.oXml["application"]["email"]["xmlText"] />
+        <cfset stReturn.version = stReturn.oXml["application"]["version"]["xmlText"] />
+      </cfif>
+    </cfif>
+
+    <cfreturn stReturn />
+  </cffunction>
+  
 	<cffunction name="loadProjectConfig" output="false" access="public" returntype="struct">
 		<cfargument name="projectname" type="string" required="true" />
 		<cfargument name="configPath" type="string" required="true" />
@@ -110,5 +129,11 @@
 		</cfif>
 		<cfreturn arguments.farCryConstructorContent />
 	</cffunction> 
-	
+
+	<!--- author: Steve Parks (steve@adeptdeveloper.com). version 1, May 20, 2005 --->
+	<cffunction name="millisecondsToDate" access="public" output="false" returnType="date">
+		<cfargument name="strMilliseconds" type="string" required="true" />
+		<cfreturn dateAdd("s", strMilliseconds/1000, "january 1 1970 00:00:00") />
+	</cffunction>
+
 </cfcomponent>
