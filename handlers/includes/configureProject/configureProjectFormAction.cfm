@@ -40,13 +40,16 @@
   <cfset configData["path"]["Core"] = form.pathToFarCry & "/core" />
   <cfset configData["path"]["Plugins"] = form.pathToFarCry & "/plugins" />
   <cfset configData["path"]["Projects"] = form.pathToFarCry & "/projects" />
-  <cfset configData["farCryVersionShort"] = form.farCryVersionShort />
-  <cfset configData["farCryVersionFull"] = form.farCryVersionFull />
+  <cfset configData["farCryVersion"] = form.farCryVersionFull />
   <cfset configData["installationType"] = form.installationType />
   <cfif form.installationType eq "subdirectory">
     <cfset configData["farCryProjectDirectoryName"] = "" />
   <cfelse>
     <cfset configData["farCryProjectDirectoryName"] = form.farCryProjectDirectoryName />
+  </cfif>
+  <cfset dateTimelastUpdated = "#createODBCDatetime(now())#" />
+  <cfif structKeyExists(request,"projectConfig") is false>
+    <cfset dateTimeCreated = "#createODBCDatetime(now())#" />
   </cfif>
   
   <!--- save the configuration data --->
@@ -58,7 +61,7 @@
   <cfset fileName = application.oCustomFunctions.cleanFileName(form.eclipseProjectName) />
   <cffile action="write" file="#configPath#/#fileName#.json" output="#trim(jsonData)#" addnewline="false" />
     <cfcatch>
-      <cfset variables.stErrors.message = "Configuration file write error. The extension cannot work without the ability to write to the config file. Please check that Coldfusion has write access to the extension folders." />
+      <cfset variables.stErrors.message = "Configuration file write error. The extension cannot work without the ability to write to the config file. Please check that ColdFusion has write access to the extension folders." />
     </cfcatch>    
   </cftry>
 </cfif>
