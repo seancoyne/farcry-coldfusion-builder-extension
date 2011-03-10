@@ -6,7 +6,7 @@
 
 <!--- ensure project has been configured --->
 <cfif not structKeyExists(request,"projectConfig")>
-	<skin:contentWrapperMain workbench="dialog" title="Project Needs Configuration!" width="600" height="400">
+	<skin:contentWrapperMain workbench="dialog" title="Project Needs Configuration!" width="800" height="600">
 		<cfoutput>
 			<h1>Sorry, you must configure this project before you can install a plugin.</h1>
 		</cfoutput>
@@ -176,7 +176,7 @@
 	 
 	<cfif bPluginInstalled eq true>
 		
-		<skin:contentWrapperMain workbench="dialog" title="Installation Successful!" width="600" height="400">
+		<skin:contentWrapperMain workbench="dialog" title="Installation Successful!" width="800" height="600">
 			
 			<cfoutput>
 				
