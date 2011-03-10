@@ -59,7 +59,7 @@
   <cftry>
   <!--- clean up the project name so it is safe to save as a file name --->
   <cfset fileName = application.oCustomFunctions.cleanFileName(form.eclipseProjectName) />
-  <cffile action="write" file="#configPath#/#fileName#.json" output="#trim(jsonData)#" addnewline="false" />
+  <cffile action="write" file="#configPath#/#fileName#.json" output="#trim(jsonData)#" addnewline="false" mode="775" />
     <cfcatch>
       <cfset variables.stErrors.message = "Configuration file write error. The extension cannot work without the ability to write to the config file. Please check that ColdFusion has write access to the extension folders." />
     </cfcatch>    
